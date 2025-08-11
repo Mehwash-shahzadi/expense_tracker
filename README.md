@@ -99,6 +99,9 @@ createdb expense_db
 
 poetry run uvicorn app.main:app --reload
 
+---
+
+
 📌 API Endpoints
 
  📂 Categories
