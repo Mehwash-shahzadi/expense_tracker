@@ -80,20 +80,17 @@ cd expense_tracker
 2️⃣ Install Dependencies
 
 Using Poetry:
-
-
 poetry install
+
 Or pip:
-
-
 pip install -r requirements.txt
 
-### 3️⃣ Configure Environment Variables
+3️⃣ Configure Environment Variables
 
 Create a .env file in the root:
 DATABASE_URL=postgresql://postgres:route@localhost:5432/expense_db
 
-### 4️⃣ Prepare Database
+4️⃣ Prepare Database
 
 Ensure PostgreSQL is running and database exists:
 createdb expense_db
@@ -102,9 +99,9 @@ createdb expense_db
 
 poetry run uvicorn app.main:app --reload
 
-## 📌 API Endpoints
+📌 API Endpoints
 
-### 📂 Categories
+ 📂 Categories
 | Method | Endpoint           | Description             |
 |--------|--------------------|-------------------------|
 | POST   | `/category/`       | Create a new category   |
@@ -114,7 +111,7 @@ poetry run uvicorn app.main:app --reload
 
 ---
 
-### 💵 Budgets
+💵 Budgets
 | Method | Endpoint         | Description           |
 |--------|------------------|-----------------------|
 | POST   | `/budget/`       | Create a new budget   |
@@ -124,7 +121,7 @@ poetry run uvicorn app.main:app --reload
 
 ---
 
-### 🧾 Expenses
+🧾 Expenses
 | Method | Endpoint          | Description                                         |
 |--------|-------------------|-----------------------------------------------------|
 | POST   | `/expense/`       | Create a new expense (**budget check applied**)     |
