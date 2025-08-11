@@ -78,27 +78,35 @@ expense_tracker/
 ```bash
 git clone https://github.com/Mehwash-shahzadi/expense_tracker.git
 cd expense_tracker
+```
 
-2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 
+```bash
 Using Poetry:
 poetry install
 
 Or pip:
 pip install -r requirements.txt
+```
 
-3️⃣ Configure Environment Variables
+### 3️⃣ Configure Environment Variables
 
+```bash
 Create a .env file in the root:
 DATABASE_URL=postgresql://postgres:route@localhost:5432/expense_db
+```
 
-4️⃣ Prepare Database
+### 4️⃣ Prepare Database
 
+```bash
 Ensure PostgreSQL is running and database exists:
 createdb expense_db
+```
 
-5️⃣ Start Application
+### 5️⃣ Start Application
 
+```bash
 poetry run uvicorn app.main:app --reload
 
 ```
@@ -135,3 +143,19 @@ poetry run uvicorn app.main:app --reload
 | GET    | `/expense/`     | List all expenses                               |
 | PUT    | `/expense/{id}` | Update an expense by ID                         |
 | DELETE | `/expense/{id}` | Delete an expense by ID                         |
+
+---
+
+### ✅ Best Practices Followed
+
+🔒 Secure .env configuration
+
+📦 Managed dependencies via Poetry
+
+🧱 Modular folder structure
+
+🧪 Automatic validation with Pydantic
+
+🔁 Consistent API routing
+
+🛡 Budget validation to prevent overspending
