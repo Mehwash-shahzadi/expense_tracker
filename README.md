@@ -101,36 +101,37 @@ createdb expense_db
 
 poetry run uvicorn app.main:app --reload
 
----
-
-
-📌 API Endpoints
-
- 📂 Categories
-| Method | Endpoint           | Description             |
-|--------|--------------------|-------------------------|
-| POST   | `/category/`       | Create a new category   |
-| GET    | `/category/`       | List all categories     |
-| PUT    | `/category/{id}`   | Update a category by ID |
-| DELETE | `/category/{id}`   | Delete a category by ID |
-
----
-
-💵 Budgets
-| Method | Endpoint         | Description           |
-|--------|------------------|-----------------------|
-| POST   | `/budget/`       | Create a new budget   |
-| GET    | `/budget/`       | List all budgets      |
-| PUT    | `/budget/{id}`   | Update a budget by ID |
-| DELETE | `/budget/{id}`   | Delete a budget by ID |
-
----
-
-🧾 Expenses
-| Method | Endpoint          | Description                                         |
-|--------|-------------------|-----------------------------------------------------|
-| POST   | `/expense/`       | Create a new expense (**budget check applied**)     |
-| GET    | `/expense/`       | List all expenses                                   |
-| PUT    | `/expense/{id}`   | Update an expense by ID                             |
-| DELETE | `/expense/{id}`   | Delete an expense by ID                             |
 ```
+
+### 📌 API Endpoints
+
+## 📂 Categories
+
+| Method | Endpoint         | Description             |
+| ------ | ---------------- | ----------------------- |
+| POST   | `/category/`     | Create a new category   |
+| GET    | `/category/`     | List all categories     |
+| PUT    | `/category/{id}` | Update a category by ID |
+| DELETE | `/category/{id}` | Delete a category by ID |
+
+---
+
+## 💵 Budgets
+
+| Method | Endpoint       | Description           |
+| ------ | -------------- | --------------------- |
+| POST   | `/budget/`     | Create a new budget   |
+| GET    | `/budget/`     | List all budgets      |
+| PUT    | `/budget/{id}` | Update a budget by ID |
+| DELETE | `/budget/{id}` | Delete a budget by ID |
+
+---
+
+## 🧾 Expenses
+
+| Method | Endpoint        | Description                                     |
+| ------ | --------------- | ----------------------------------------------- |
+| POST   | `/expense/`     | Create a new expense (**budget check applied**) |
+| GET    | `/expense/`     | List all expenses                               |
+| PUT    | `/expense/{id}` | Update an expense by ID                         |
+| DELETE | `/expense/{id}` | Delete an expense by ID                         |
