@@ -18,15 +18,17 @@ It’s designed for **personal finance apps** or **internal expense management s
 
 ---
 
-## 🚀 Tech Stack
+## ⚙️ Tech Stack
 
-- **Language:** Python 3.11+
-- **Framework:** [FastAPI](https://fastapi.tiangolo.com/)
-- **ORM:** [SQLModel](https://sqlmodel.tiangolo.com/)
-- **Database:** PostgreSQL
-- **Package Manager:** Poetry
-- **DB Management Tool:** TablePlus
-- **Testing:** Pytest
+| Layer           | Technology    |
+| --------------- | ------------- |
+| Framework       | FastAPI       |
+| ORM             | SQLModel      |
+| Database        | PostgreSQL    |
+| Config          | python-dotenv |
+| Dependency Mgmt | Poetry        |
+| Client GUI      | TablePlus     |
+| Editor          | VS Code       |
 
 ---
 
