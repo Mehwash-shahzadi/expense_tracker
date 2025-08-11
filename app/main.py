@@ -2,10 +2,11 @@ from fastapi import FastAPI
 from sqlmodel import SQLModel
 from app.routers import category, expense, budget
 from app.core.db import engine  
+import os
 
+print("DATABASE_URL =", os.getenv("DATABASE_URL"))  
 
 app = FastAPI(title="Expense Tracker API")
-
 
 @app.on_event("startup")
 def on_startup():
@@ -19,5 +20,3 @@ app.include_router(budget.router)
 @app.get("/")
 def root():
     return {"message": "Welcome to Expense Tracker API"}
-
-
