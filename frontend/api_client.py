@@ -1,27 +1,13 @@
 import streamlit as st
 import requests
 
-# ---------- Safe secret access ----------
-BASE_URL = st.secrets.get(
-    "general", {}
-).get(
-    "BACKEND_URL",
-    "https://your-railway-backend-url"  
-)
-st.write(f"Using backend URL: {BASE_URL}")
-
-if BASE_URL is None:
-    raise RuntimeError(
-        "BACKEND_URL is missing in st.secrets! Add it in secrets.toml or Streamlit Cloud settings."
-    )
+# ---------- Direct backend URL ----------
+BASE_URL = "https://expensetracker-production-7d78.up.railway.app"
 
 st.write(f"Using backend URL: {BASE_URL}")
-st.write("Current secrets:", st.secrets)
 
 # ---------- Backend status ----------
 def check_backend_status():
-    if BASE_URL is None:
-        return False
     try:
         r = requests.get(f"{BASE_URL}/health")
         return r.status_code == 200
