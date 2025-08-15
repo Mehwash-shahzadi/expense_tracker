@@ -25,10 +25,9 @@ def create_expense(expense: ExpenseCreate, db: Session = Depends(get_db)):
     if not category:
         raise HTTPException(status_code=404, detail="Category not found")
 
-    
+    # Check budget for new expense
     check_budget(db, expense.category_id, expense.amount)
 
-  
     new_expense = Expense(**expense.dict())
     db.add(new_expense)
     db.commit()
@@ -47,6 +46,10 @@ def update_expense(expense_id: int, expense_data: ExpenseCreate, db: Session = D
     if not expense:
         raise HTTPException(status_code=404, detail="Expense not found")
 
+    # Check budget for updated expense, excluding the current expense from total
+    check_budget(db, expense_data.category_id, expense_data.amount, exclude_expense_id=expense_id)
+
+    # Update fields
     expense.amount = expense_data.amount
     expense.description = expense_data.description
     expense.category_id = expense_data.category_id

@@ -8,6 +8,11 @@ print("DATABASE_URL =", os.getenv("DATABASE_URL"))
 
 app = FastAPI(title="Expense Tracker API")
 
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 @app.on_event("startup")
 def on_startup():
     SQLModel.metadata.drop_all(engine)
@@ -20,3 +25,7 @@ app.include_router(budget.router)
 @app.get("/")
 def root():
     return {"message": "Welcome to Expense Tracker API"}
+
+
+
+
