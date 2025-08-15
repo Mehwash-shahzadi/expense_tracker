@@ -1,9 +1,9 @@
 import streamlit as st
-import os
 import requests
 
 # Read backend URL from environment variable
 BASE_URL = st.secrets["general"]["BACKEND_URL"]
+st.write(BASE_URL) 
 
 def check_backend_status():
     try:
