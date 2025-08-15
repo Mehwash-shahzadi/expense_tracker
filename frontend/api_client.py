@@ -2,7 +2,13 @@ import streamlit as st
 import requests
 
 # ---------- Safe secret access ----------
-BASE_URL = st.secrets.get("general", {}).get("BACKEND_URL", None)
+BASE_URL = st.secrets.get(
+    "general", {}
+).get(
+    "BACKEND_URL",
+    "https://your-railway-backend-url"  
+)
+st.write(f"Using backend URL: {BASE_URL}")
 
 if BASE_URL is None:
     raise RuntimeError(
