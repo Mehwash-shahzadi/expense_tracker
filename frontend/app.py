@@ -1,5 +1,5 @@
 import streamlit as st
-from frontend import api_client
+import api_client
 from my_pages import category, budget, expense
 
 #  ------Main title------
