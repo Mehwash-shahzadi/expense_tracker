@@ -1,8 +1,9 @@
+import streamlit as st
 import os
 import requests
 
 # Read backend URL from environment variable
-BASE_URL = os.getenv("BACKEND_URL")  
+BASE_URL = st.secrets["BACKEND_URL"] 
 
 def check_backend_status():
     try:
@@ -132,4 +133,4 @@ def delete_expense(expense_id):
         except Exception:
             return {"error": str(e)}
     except requests.exceptions.RequestException as e:
-        return {"error": str(e)}
+        return {"error": str(e)} 
