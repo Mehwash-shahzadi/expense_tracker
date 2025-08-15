@@ -1,5 +1,5 @@
 import streamlit as st
-from frontend import api_client
+import api_client
 from datetime import date
 
 def handle_expense_response(result, success_msg="Operation successful."):

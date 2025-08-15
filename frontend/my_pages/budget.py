@@ -1,5 +1,6 @@
 import streamlit as st
-from frontend import api_client
+import api_client
+
 
 def render():
     st.header("Manage Budgets")
