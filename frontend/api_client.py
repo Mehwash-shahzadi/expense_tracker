@@ -1,9 +1,15 @@
 import streamlit as st
 import requests
 
-# Read backend URL from environment variable
-BASE_URL = st.secrets["general"]["BACKEND_URL"]
-st.write(BASE_URL) 
+# ---------- Safe secret access ----------
+BASE_URL = st.secrets.get("general", {}).get("BACKEND_URL", None)
+
+if BASE_URL is None:
+    st.error("BACKEND_URL is missing in st.secrets! Please add it in secrets.toml or Streamlit Cloud settings.")
+    st.stop()  # stop the app if backend URL is missing
+
+st.write(f"Using backend URL: {BASE_URL}")
+st.write("Current secrets:", st.secrets)
 
 def check_backend_status():
     try:
