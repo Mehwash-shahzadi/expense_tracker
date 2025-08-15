@@ -5,19 +5,22 @@ import requests
 BASE_URL = st.secrets.get("general", {}).get("BACKEND_URL", None)
 
 if BASE_URL is None:
-    st.error("BACKEND_URL is missing in st.secrets! Please add it in secrets.toml or Streamlit Cloud settings.")
-    st.stop()  # stop the app if backend URL is missing
+    raise RuntimeError(
+        "BACKEND_URL is missing in st.secrets! Add it in secrets.toml or Streamlit Cloud settings."
+    )
 
 st.write(f"Using backend URL: {BASE_URL}")
 st.write("Current secrets:", st.secrets)
 
+# ---------- Backend status ----------
 def check_backend_status():
+    if BASE_URL is None:
+        return False
     try:
         r = requests.get(f"{BASE_URL}/health")
         return r.status_code == 200
     except requests.exceptions.RequestException:
         return False
-
 
 # ---------- Categories ----------
 def get_category():
@@ -52,7 +55,6 @@ def delete_category(category_id):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-
 # ---------- Budgets ----------
 def get_budget():
     try:
@@ -86,7 +88,6 @@ def delete_budget(budget_id):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-
 # ---------- Expenses ----------
 def get_expense():
     try:
@@ -108,8 +109,7 @@ def create_expense(data):
         return r.json()
     except requests.exceptions.HTTPError as e:
         try:
-            """this will include budget error if backend returns it"""
-            return r.json()  
+            return r.json()
         except Exception:
             return {"error": str(e)}
     except requests.exceptions.RequestException as e:
@@ -139,4 +139,4 @@ def delete_expense(expense_id):
         except Exception:
             return {"error": str(e)}
     except requests.exceptions.RequestException as e:
-        return {"error": str(e)} 
+        return {"error": str(e)}
