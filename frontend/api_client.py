@@ -1,18 +1,17 @@
-import streamlit as st
+# frontend/api_client.py
+
 import requests
 
-# ---------- Direct backend URL ----------
-BASE_URL = "https://expensetracker-production-7d78.up.railway.app"
+BASE_URL = "http://localhost:8000"  
 
-st.write(f"Using backend URL: {BASE_URL}")
-
-# ---------- Backend status ----------
 def check_backend_status():
+    """Ping the backend to see if it's online."""
     try:
         r = requests.get(f"{BASE_URL}/health")
         return r.status_code == 200
     except requests.exceptions.RequestException:
         return False
+
 
 # ---------- Categories ----------
 def get_category():
@@ -47,6 +46,7 @@ def delete_category(category_id):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
+
 # ---------- Budgets ----------
 def get_budget():
     try:
@@ -80,17 +80,13 @@ def delete_budget(budget_id):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
+
 # ---------- Expenses ----------
 def get_expense():
     try:
-        r = requests.get(f"{BASE_URL}/expense")
+        r = requests.get(f"{BASE_URL}/expenses")
         r.raise_for_status()
         return r.json()
-    except requests.exceptions.HTTPError as e:
-        try:
-            return r.json()
-        except Exception:
-            return {"error": str(e)}
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
@@ -99,11 +95,6 @@ def create_expense(data):
         r = requests.post(f"{BASE_URL}/expense", json=data)
         r.raise_for_status()
         return r.json()
-    except requests.exceptions.HTTPError as e:
-        try:
-            return r.json()
-        except Exception:
-            return {"error": str(e)}
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
@@ -112,11 +103,6 @@ def update_expense(expense_id, data):
         r = requests.put(f"{BASE_URL}/expense/{expense_id}", json=data)
         r.raise_for_status()
         return r.json()
-    except requests.exceptions.HTTPError as e:
-        try:
-            return r.json()
-        except Exception:
-            return {"error": str(e)}
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
@@ -125,10 +111,5 @@ def delete_expense(expense_id):
         r = requests.delete(f"{BASE_URL}/expense/{expense_id}")
         r.raise_for_status()
         return {"success": True}
-    except requests.exceptions.HTTPError as e:
-        try:
-            return r.json()
-        except Exception:
-            return {"error": str(e)}
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
